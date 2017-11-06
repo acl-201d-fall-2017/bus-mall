@@ -1,0 +1,9 @@
+#select {
+    display: flex;
+    width: 80%;
+}
+
+img {
+    width: 75px;
+    height: auto;
+}

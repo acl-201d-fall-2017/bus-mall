@@ -13,3 +13,10 @@ Product.prototype.wasClicked = function () {
     this.clicked += 1;
 };
 
+Product.prototype.render = function () {
+    const ele = document.createElement('img');
+    ele.src = this.src;
+    ele.name = this.name;
+    return ele;
+};
+

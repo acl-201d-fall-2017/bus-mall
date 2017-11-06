@@ -1,6 +1,6 @@
 'use strict';
 
-let clicks = 0
+const clicks = 0;
 
 const bag = new Product('bag', 'bag.jpg');
 const banana = new Product('banana', 'banana.jpg');
@@ -16,10 +16,10 @@ const pen = new Product('pen', 'pen.jpg');
 const petSweep = new Product('pet sweep', 'pet-sweep.jpg');
 const scissors = new Product('scissors', 'scissors.jpg');
 const shark = new Product('shark', 'shark.jpg');
-const sweep = new Product('sweep', 'sweep.jpg');
+const sweep = new Product('sweep', 'sweep.png');
 const tauntaun = new Product('tauntaun', 'tauntaun.jpg');
 const unicorn = new Product('unicorn', 'unicorn.jpg');
-const usb = new Product('usb', 'usb.jpg');
+const usb = new Product('usb', 'usb.gif');
 const waterCan = new Product('water can', 'water-can.jpg');
 const wineGlass = new Product('wine glass', 'wine-glass.jpg');
 
@@ -27,5 +27,30 @@ const products = [bag, banana, bathroom, boots, breakfast, bubblegum, chair, cth
 
 
 
-// choose one random product
-const randomProduct = products[Math.floor(Math.random() * products.length)];
+// Function to select a random product and put it on the page
+
+function appendRandomProduct () {
+    const select = document.getElementById('select');
+    const randomProduct = products[Math.floor(Math.random() * products.length)];
+    const randomProductEle = randomProduct.render();
+    select.appendChild(randomProductEle);
+    randomProduct.wasDisplayed();
+}
+
+
+// Put three random products on page
+
+for (let i = 0; i < 3; i ++) {
+    appendRandomProduct();
+};
+
+
+
+// function endGame () {
+//     +    // remove click listener on game section
+//          const select = document.getElementById('select');
+//          game.removeEventListener('click', clickHandler);
+//     -    clearInterval(play);
+
+//          console.table(products);
+//      } 
