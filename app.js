@@ -24,6 +24,7 @@ const waterCan = new Product('water can', 'water-can.jpg');
 const wineGlass = new Product('wine glass', 'wine-glass.jpg');
 
 const products = [bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep, scissors, shark, sweep, tauntaun, unicorn, usb, waterCan, wineGlass];
+
 // create arrays for name labels, number of times clicked, number of times displayed
 
 const prodNames = [];
@@ -66,6 +67,7 @@ function clickHandler (e) {
     const clickedProduct = e.target;
     console.log(clickedProduct);
 
+    // Checks name of DOM element, ties to JS object, adjusts object props accordingly
     for (let i = 0; i < products.length; i ++) {
         const productName = clickedProduct.name;
         if (products[i].name === productName) {
@@ -74,9 +76,19 @@ function clickHandler (e) {
         }
     }
     clicks ++;
-    const imageScrub = document.getElementById('img');
-    // imageScrub.remove(); HOW DO I GET THE FIRST THREE TO GO AWAY?
+
+    const select = clickedProduct.parentNode;
+    //removes the three images:
+    while (select.hasChildNodes()) {
+        select.removeChild(select.lastChild);
+    }
+
     appendRandomProduct();
+
+    if (clicks >= 5) { //change to 25 later!!
+        endSurvey();
+        console.table(products);
+    }
 }
 
 // function to remove event listener at 25 clicks, add data to page
@@ -84,10 +96,5 @@ function clickHandler (e) {
 function endSurvey () {
     const select = document.getElementById('select');
     select.removeEventListener('click', clickHandler);
-//    clearInterval(play);   
 }
 
-if (clicks >= 5) { //change to 25 later!!
-    endSurvey();
-    console.table(products);
-}
