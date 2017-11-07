@@ -44,6 +44,39 @@ for (let i = 0; i < 3; i ++) {
     appendRandomProduct();
 };
 
+const choice = document.getElementById('select');
+choice.addEventListener('click', clickHandler);
+
+function clickHandler (e) {
+    const clickedProduct = e.target;  
+    console.log(clickedProduct);
+
+   // looping over products array to find the product instance to update
+    for (let i = 0; i < products.length; i ++) {
+        const productClass = clickedproduct.classList.value;
+        if (products[i].type === productClass) {
+            products[i].wasClicked();
+        }
+    }
+}
+
+
+
+
+
+
+
+// function getRandomArrayElements(arr, count) {
+//     const shuffled = arr.slice(0), i = arr.length, min = i - count, temp, index;
+//     while (i-- > min) {
+//         index = math.floor((i+1) * Math.random());
+//         temp = shuffled[index];
+//         shuffled[index] = shuffled[i];
+//         shuffled[i] = temp;
+//     }
+//     return shuffled.slice(min);
+// }
+
 
 
 // function endGame () {
