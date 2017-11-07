@@ -1,6 +1,6 @@
 'use strict';
 
-const clicks = 0;
+let clicks = 0;
 
 const bag = new Product('bag', 'bag.jpg');
 const banana = new Product('banana', 'banana.jpg');
@@ -25,19 +25,6 @@ const wineGlass = new Product('wine glass', 'wine-glass.jpg');
 
 const products = [bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep, scissors, shark, sweep, tauntaun, unicorn, usb, waterCan, wineGlass];
 
-
-
-// Function to select a random product and put it on the page
-
-// function appendRandomProduct () {
-//     const select = document.getElementById('select');
-//     const randomProduct = products[Math.floor(Math.random() * products.length)];
-//     const randomProductEle = randomProduct.render();
-//     select.appendChild(randomProductEle);
-//     randomProduct.wasDisplayed();
-// }
-
-
 // Put three random products on page
 
 function appendRandomProduct () {
@@ -52,48 +39,31 @@ function appendRandomProduct () {
 
 appendRandomProduct();
 
-
-
 const choice = document.getElementById('select');
 choice.addEventListener('click', clickHandler);
 
 function clickHandler (e) {
-    const clickedProduct = e.target;  
+    const clickedProduct = e.target;
     console.log(clickedProduct);
 
     for (let i = 0; i < products.length; i ++) {
         const productName = clickedProduct.name;
         if (products[i].name === productName) {
-            products[i].wasClicked();   
+            products[i].wasClicked();
             console.log(products[i]);
         }
     }
+    clicks ++;
 }
 
 
+function endSurvey () {
+    const select = document.getElementById('select');
+    select.removeEventListener('click', clickHandler);
+//    clearInterval(play);   
+}
 
-
-
-
-
-// function getRandomArrayElements(arr, count) {
-//     const shuffled = arr.slice(0), i = arr.length, min = i - count, temp, index;
-//     while (i-- > min) {
-//         index = math.floor((i+1) * Math.random());
-//         temp = shuffled[index];
-//         shuffled[index] = shuffled[i];
-//         shuffled[i] = temp;
-//     }
-//     return shuffled.slice(min);
-// }
-
-
-
-// function endGame () {
-//     +    // remove click listener on game section
-//          const select = document.getElementById('select');
-//          game.removeEventListener('click', clickHandler);
-//     -    clearInterval(play);
-
-//          console.table(products);
-//      } 
+if (clicks >= 25) {
+    endSurvey();
+    console.table(products);
+}
