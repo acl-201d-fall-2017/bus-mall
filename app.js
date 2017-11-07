@@ -24,8 +24,19 @@ const waterCan = new Product('water can', 'water-can.jpg');
 const wineGlass = new Product('wine glass', 'wine-glass.jpg');
 
 const products = [bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep, scissors, shark, sweep, tauntaun, unicorn, usb, waterCan, wineGlass];
+// create arrays for name labels, number of times clicked, number of times displayed
 
-// Put three random products on page
+const prodNames = [];
+const clickedSet = [];
+const displayedSet = [];
+
+for (let i = 0; i < products.length; i++) {
+    prodNames.push(products[i].name);
+    clickedSet.push(products[i].clicked);
+    displayedSet.push(products[i].displayed);
+}
+
+// Put three random products on page, no duplicates in each three
 
 function appendRandomProduct () {
     const tempArray = [];
@@ -63,8 +74,12 @@ function clickHandler (e) {
         }
     }
     clicks ++;
+    const imageScrub = document.getElementById('img');
+    // imageScrub.remove(); HOW DO I GET THE FIRST THREE TO GO AWAY?
+    appendRandomProduct();
 }
 
+// function to remove event listener at 25 clicks, add data to page
 
 function endSurvey () {
     const select = document.getElementById('select');
@@ -72,7 +87,7 @@ function endSurvey () {
 //    clearInterval(play);   
 }
 
-if (clicks >= 25) {
+if (clicks >= 5) { //change to 25 later!!
     endSurvey();
     console.table(products);
 }

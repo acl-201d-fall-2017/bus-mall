@@ -1,5 +1,6 @@
 body {
     padding: 50px;
+    background-color: rgb(47, 82, 82)
 
 }
 #select {
@@ -12,6 +13,6 @@ body {
 #select img {
     width: 25%;
     height: auto;
-    border: solid 1px black;
+    border: solid 2px black;
     padding: 10px;
 }
