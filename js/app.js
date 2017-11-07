@@ -89,7 +89,7 @@ function clickHandler (e) {
                         {
                             label:'Product Name',
                             data: clickedSet,
-                            backgroundColor: 'rgba(255,100,20,1)',
+                            backgroundColor: 'rgb(117, 45, 30)',
                         }
                     ]
                 },
