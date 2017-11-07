@@ -28,19 +28,28 @@ const products = [bag, banana, bathroom, boots, breakfast, bubblegum, chair, cth
 // Put three random products on page
 
 function appendRandomProduct () {
+    const tempArray = [];
+    const select = document.getElementById('select');
     for (let i = 0; i < 3; i ++) {
-        const select = document.getElementById('select');
         const randomProduct = products[Math.floor(Math.random() * products.length)];
-        const randomProductEle = randomProduct.render();
-        select.appendChild(randomProductEle);
-        randomProduct.wasDisplayed();
+        if (tempArray.includes(randomProduct) === true) {
+            i = i - 1;
+        }
+        else {
+            const randomProductEle = randomProduct.render();
+            select.appendChild(randomProductEle);
+            randomProduct.wasDisplayed();
+            tempArray.push(randomProduct);
+        }
     };
 }
 
-appendRandomProduct();
-
 const choice = document.getElementById('select');
 choice.addEventListener('click', clickHandler);
+
+// write a function that will store clicks and displays, and then re-append random product each time the page is clicked on.
+
+appendRandomProduct();
 
 function clickHandler (e) {
     const clickedProduct = e.target;
