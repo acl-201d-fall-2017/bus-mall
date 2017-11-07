@@ -29,20 +29,30 @@ const products = [bag, banana, bathroom, boots, breakfast, bubblegum, chair, cth
 
 // Function to select a random product and put it on the page
 
-function appendRandomProduct () {
-    const select = document.getElementById('select');
-    const randomProduct = products[Math.floor(Math.random() * products.length)];
-    const randomProductEle = randomProduct.render();
-    select.appendChild(randomProductEle);
-    randomProduct.wasDisplayed();
-}
+// function appendRandomProduct () {
+//     const select = document.getElementById('select');
+//     const randomProduct = products[Math.floor(Math.random() * products.length)];
+//     const randomProductEle = randomProduct.render();
+//     select.appendChild(randomProductEle);
+//     randomProduct.wasDisplayed();
+// }
 
 
 // Put three random products on page
 
-for (let i = 0; i < 3; i ++) {
-    appendRandomProduct();
-};
+function appendRandomProduct () {
+    for (let i = 0; i < 3; i ++) {
+        const select = document.getElementById('select');
+        const randomProduct = products[Math.floor(Math.random() * products.length)];
+        const randomProductEle = randomProduct.render();
+        select.appendChild(randomProductEle);
+        randomProduct.wasDisplayed();
+    };
+}
+
+appendRandomProduct();
+
+
 
 const choice = document.getElementById('select');
 choice.addEventListener('click', clickHandler);
@@ -51,11 +61,11 @@ function clickHandler (e) {
     const clickedProduct = e.target;  
     console.log(clickedProduct);
 
-   // looping over products array to find the product instance to update
     for (let i = 0; i < products.length; i ++) {
-        const productClass = clickedproduct.classList.value;
-        if (products[i].type === productClass) {
-            products[i].wasClicked();
+        const productName = clickedProduct.name;
+        if (products[i].name === productName) {
+            products[i].wasClicked();   
+            console.log(products[i]);
         }
     }
 }
