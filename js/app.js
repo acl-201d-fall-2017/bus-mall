@@ -44,12 +44,14 @@ function appendRandomProduct () {
     };
 }
 
+appendRandomProduct();
+
+const prodNames = [];
+const clickedSet = [];
+const displayedSet = [];
+
 const choice = document.getElementById('select');
 choice.addEventListener('click', clickHandler);
-
-// write a function that will store clicks and displays, and then re-append random product each time the page is clicked on.
-
-appendRandomProduct();
 
 function clickHandler (e) {
     const clickedProduct = e.target;
@@ -73,17 +75,42 @@ function clickHandler (e) {
 
     appendRandomProduct();
 
-    if (clicks >= 5) { //change to 25 later!!
+    if (clicks >= 25) { //change to 25 later!!
         endSurvey();
         console.table(products);
+
+        const chart = new Chart( //eslint-disable-line
+            chartCtx,
+            {
+                type: 'bar',
+                data: {
+                    labels: prodNames,
+                    datasets: [
+                        {
+                            label:'Product Name',
+                            data: clickedSet,
+                            backgroundColor: 'rgba(255,100,20,1)',
+                        }
+                    ]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Products Chosen',
+                    }
+                }
+            }
+        );
     }
 }
 
-// function to remove event listener at 25 clicks, add data to page
+// add chart.js chart using Canvas element:
 
-const prodNames = [];
-const clickedSet = [];
-const displayedSet = [];
+const chartCanvas = document.getElementById('chart');
+const chartCtx = chartCanvas.getContext('2d');
+
+
+// function to remove event listener at 25 clicks, add data to page
 
 function endSurvey () {
     const select = document.getElementById('select');
@@ -94,32 +121,5 @@ function endSurvey () {
         clickedSet.push(products[i].clicked);
         displayedSet.push(products[i].displayed);
     }
+
 }
-
-// add chart.js chart using Canvas element:
-
-const chartCanvas = document.getElementById('chart');
-const chartCtx = chartCanvas.getContext('2d');
-
-const chart = new Chart(
-    chartCtx,
-    {
-        type: 'bar',
-        data: {
-            labels: prodNames,
-            datasets: [
-                {
-                    label:'Product Name',
-                    data: clickedSet,
-                    backgroundColor: 'rgba(255,100,20,1)',
-                }
-            ]
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Products Chosen',
-            }
-        }
-    }
-);
