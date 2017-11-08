@@ -3,6 +3,7 @@
 let clicks = 0;
 
 let products = [];
+
 const prodNames = [];
 const clickedSet = [];
 const displayedSet = [];
