@@ -12,6 +12,11 @@ body {
     padding: 80px;
 }
 
+section {
+    width: 90%;
+    height: 400px;
+}
+
 company {
     margin-right: 50px;
 }
