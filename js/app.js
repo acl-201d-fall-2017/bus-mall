@@ -30,9 +30,29 @@ const products = [bag, banana, bathroom, boots, breakfast, bubblegum, chair, cth
 function appendRandomProduct () {
     const tempArray = [];
     const select = document.getElementById('select');
+
+    do {
+        const randomProduct = products[Math.floor(Math.random() * products.length)];
+        console.log('randomProduct:', randomProduct);
+        console.log('temparry:', tempArray);
+        if (!tempArray.includes(randomProduct)) {
+            const randomProductEle = randomProduct.render();
+            select.appendChild(randomProductEle);
+            randomProduct.wasDisplayed();
+            tempArray.push(randomProduct);
+        }
+    } while (tempArray.length < 3);
+
+
+    /*
     for (let i = 0; i < 3; i ++) {
         const randomProduct = products[Math.floor(Math.random() * products.length)];
-        if (tempArray.includes(randomProduct) === true) {
+        // const randomProduct = products[Math.floor(.87 * products.length)];
+        // const randomProduct = products[Math.floor(.87 * 19)];
+        // const randomProduct = products[Math.floor(10.2)];
+        // const randomProduct = products[10];
+        // const randomProduct = pen;
+        if (tempArray.includes(randomProduct)) {
             i = i - 1;
         }
         else {
@@ -42,6 +62,8 @@ function appendRandomProduct () {
             tempArray.push(randomProduct);
         }
     };
+    */
+
 }
 
 appendRandomProduct();
@@ -79,7 +101,7 @@ function clickHandler (e) {
         endSurvey();
         console.table(products);
 
-        const chart = new Chart( //eslint-disable-line
+        const chart = new Chart(
             chartCtx,
             {
                 type: 'bar',
@@ -101,6 +123,7 @@ function clickHandler (e) {
                 }
             }
         );
+        Chart.defaults.global.defaultFontColor = '#FFFFFF';
     }
 }
 

@@ -1,4 +1,4 @@
-class Product { //eslint-disable-line
+class Product { // eslint-disable-line
     constructor(name, src) {
         this.name = name;
         this.src = './img/' + src;
